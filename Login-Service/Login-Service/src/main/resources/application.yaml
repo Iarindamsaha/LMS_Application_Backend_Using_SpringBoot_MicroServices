@@ -1,0 +1,5 @@
+server:
+  port: 8073
+spring:
+  application:
+    name: LOGIN-SERVICE

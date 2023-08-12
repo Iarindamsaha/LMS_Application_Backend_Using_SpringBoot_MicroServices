@@ -1,0 +1,48 @@
+server:
+  port: 8671
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id : ADMIN-SERVICE
+          uri: lb://ADMIN-SERVICE
+          predicates:
+            - Path= /admin/**
+
+        - id: CANDIDATE-SERVICE
+          uri: lb://CANDIDATE-SERVICE
+          predicates:
+            - Path= /candidate/**
+
+        - id: FORGET-PASSWORD-SERVICE
+          uri: lb://FORGET-PASSWORD-SERVICE
+          predicates:
+            - Path= /forgetPassword/**
+
+        - id: LOGIN-SERVICE
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path= /login/**
+
+        - id: REGISTRATION-SERVICE
+          uri: lb://REGISTRATION-SERVICE
+          predicates:
+            - Path= /registration/**
+
+        - id: VERIFICATION-SERVICE
+          uri: lb://VERIFICATION-SERVICE
+          predicates:
+            - Path= /verification/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
